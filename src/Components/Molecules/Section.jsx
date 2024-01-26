@@ -10,8 +10,9 @@ export const Section = ({ id }) => {
   console.log("id:", id);
 
   const [ data, setData ] = useState();
+  const [ name, setName ] = useState();
 
-  const datos  = useLongPolling("http://localhost:4000/messages/message/nuevo");
+  const long  = useLongPolling("http://localhost:4000/messages/message/nuevo");
 
   useEffect(() => {
     const message = async ()=>{
@@ -31,7 +32,7 @@ export const Section = ({ id }) => {
       setData(response);
     }
     message();
-  },[datos])
+  },[long])
 
   return (
     <section
@@ -43,7 +44,7 @@ export const Section = ({ id }) => {
       {data && data.message && data.message.length !== 0  ? (
         <>
           <nav className=" bg-[#010409] h-[75px] flex items-center justify-between ">
-          <Topbar name={data.message.length > 0 ? data.message[0].sender_name: ''} />
+          <Topbar url={"/img/Ellipse 251.svg"} name={data.message.length > 0 ? data.message[0].sender_name: ''} />
           </nav>
 
           <div className="bg-[#010409] overflow-y-auto">
@@ -61,9 +62,9 @@ export const Section = ({ id }) => {
            
           </div>
 
-          <form className="py-3 px-[34px] h-fit">
-            <InputBar />
-          </form>
+          <div className="py-3 px-[34px] h-fit">
+            <InputBar idReceiver = {data.message.length > 0 ? data.message[0].receiver_id: '' } name={data.message.length > 0 ? data.message[0].receiver_name: ''} idSender = {id } sender_name={data.message.length > 0 ? data.message[0].sender_name: ''}   />
+          </div>
         </>
       ) : (
         <div>

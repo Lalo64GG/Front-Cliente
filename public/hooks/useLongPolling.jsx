@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useLongPolling = (endpoint, interval = 5000) => {
+const useLongPolling = (endpoint, interval = 2000) => {
   const [data, setData] = useState([null]);
 
   const fetchData = async () => {

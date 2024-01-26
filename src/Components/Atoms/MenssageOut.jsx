@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import  useLongPolling  from '../../../public/hooks/useLongPolling'
 
-export const MenssageOut = ({id}) => {
+export const MenssageOut = ({id, setName }) => {
   const [ data, setData ] = useState();
 
   const datos  = useLongPolling("http://localhost:4000/messages/message/nuevo");
+  console.log("Datos actualizados");
 
   useEffect(() => {
     const message = async ()=>{
@@ -14,7 +15,7 @@ export const MenssageOut = ({id}) => {
       setData(response);
     }
     message();
-  },[id])
+  },[])
 
   useEffect(()=> {
     const message = async ()=>{
@@ -31,8 +32,8 @@ export const MenssageOut = ({id}) => {
     <>
       { data && data.message ? (
         <div className=''>
-          { data.message.map( (messages) =>(
-             <div className='mt-[18px]'>
+          { data.message.map( (messages, i) =>(
+             <div key={ i } className='mt-[18px]'>
              <div
              className="p-2 rounded-lg"
              style={{

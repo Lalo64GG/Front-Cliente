@@ -1,5 +1,5 @@
 import { useState } from "react";
-export const CardMessage = ({ name, id, onClick}) => {
+export const CardMessage = ({ name, id, onClick, url}) => {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleSelect = () => {
@@ -28,7 +28,7 @@ export const CardMessage = ({ name, id, onClick}) => {
         <div className="flex" style={{ marginLeft: "8px", marginTop: "13px" }}>
           <img
             className="h-[35px] w-[35px] object-cover rounded-[35px]"
-            src="/img/Ellipse 251.svg"
+            src={ url }
             alt=""
           />
         </div>
@@ -44,7 +44,7 @@ export const CardMessage = ({ name, id, onClick}) => {
             className="block mt-1 text-lg leading-tight font-medium text-[#ADB5BD]"
             style={{ fontSize: "12px", fontWeight: "500" }}
           >
-            Hola como estas, te invito a...
+
           </p>
         </div>
         <div className="relative w-[20px] h-[20px] mt-21 ml-33">

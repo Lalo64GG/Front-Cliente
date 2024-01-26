@@ -13,14 +13,13 @@ export const FrecuentChat = ({ setId, setIdReceiver }) => {
     console.log("ID seleccionado:", idSender);
     setId(idSender);
     
-    // Ejemplo de redirección a una ruta específica
   };
 
   return (
    <>
-     <p className='text-[#ADB5BD]' style={{ fontSize: '14px', marginTop: '4px', fontWeight: '600', marginLeft: '25px' }}>Favoritos</p>
+     <p className='text-[#ADB5BD]' style={{ fontSize: '14px', marginTop: '4px', fontWeight: '600', marginLeft: '25px' }}>Chats</p>
      { data?.map((programmer, index) => (
-      <CardMessage key={index} name={ programmer.name } onClick={() => handleCardClick(programmer.id) }/> 
+      <CardMessage key={index} name={ programmer.name } onClick={() => handleCardClick(programmer.id)  }  url ={ "/img/Ellipse 251.svg" }/> 
      ))}   
    </>
   )
