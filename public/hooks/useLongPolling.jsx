@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 
-const useLongPolling = (endpoint, interval = 2000) => {
+const useLongPolling = (endpoint) => {
   const [data, setData] = useState([null]);
 
   const fetchData = async () => {
+    const token = localStorage.getItem('token');
+    console.log("Token obtenido", token);
     try {
       const response = await fetch(endpoint);
       const newData = await response.json();
@@ -17,7 +19,7 @@ const useLongPolling = (endpoint, interval = 2000) => {
   useEffect(() => {
     const poll = async () => {
       await fetchData();
-      setTimeout(poll, interval);
+      setTimeout(poll);
     };
 
     poll(); // Inicia el primer polling al montar el componente
@@ -26,7 +28,7 @@ const useLongPolling = (endpoint, interval = 2000) => {
     return () => {
       clearTimeout(poll);
     };
-  }, [endpoint, interval]); // El segundo argumento [endpoint, interval] asegura que useEffect se ejecute solo cuando estos valores cambien
+  }, [endpoint,]); // El segundo argumento [endpoint, interval] asegura que useEffect se ejecute solo cuando estos valores cambien
 
   return data;
 };

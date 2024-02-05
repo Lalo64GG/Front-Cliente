@@ -8,8 +8,7 @@ export const useShortPolling = () => {
       try {
         const response = await fetch('http://localhost:40001/clientes');
         const data = await response.json();
-        setClientesEnLinea(data.clientesEnLinea -2);
-        console.log("Clientes en linea: ", data.clientesEnLinea -2);
+        setClientesEnLinea(data.clientesEnLinea );
       } catch (error) {
         console.error('Error al obtener datos de clientes en línea:', error);
       }

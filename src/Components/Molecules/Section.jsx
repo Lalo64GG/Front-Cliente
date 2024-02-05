@@ -9,14 +9,24 @@ import { useEffect, useState } from 'react';
 export const Section = ({ id }) => {
   console.log("id:", id);
 
+  const token = localStorage.getItem('token');
+
+  console.log(token);
+
   const [ data, setData ] = useState();
   const [ name, setName ] = useState();
 
-  const long  = useLongPolling("http://localhost:4000/messages/message/nuevo");
+  const long  = useLongPolling("http://localhost:4000/messages/message/nuevo", {
+    extraHeaders: {
+      Authorization: `${token}`,
+    },});
 
   useEffect(() => {
     const message = async ()=>{
-      const res = await fetch(`http://localhost:4000/messages/${id}`);
+      const res = await fetch(`http://localhost:4000/messages/${id}`, {
+        extraHeaders: {
+          Authorization: ` ${token}`
+        },});
       const response = await res.json();
       console.log("Esto es de response",response);
       setData(response);
@@ -26,7 +36,10 @@ export const Section = ({ id }) => {
 
   useEffect(()=> {
     const message = async ()=>{
-      const res = await fetch(`http://localhost:4000/messages/${id}`);
+      const res = await fetch(`http://localhost:4000/messages/${id}`, {
+        extraHeaders: {
+          Authorization: ` ${token}`
+        },});
       const response = await res.json();
       console.log("Esto es de response",response);
       setData(response);

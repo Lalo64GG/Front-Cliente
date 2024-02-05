@@ -1,12 +1,4 @@
-const PostExample = () => {
-    const [postData, setPostData] = useState({
-      senderId: 1,
-      receiverId: 2,
-      sender_name: 'Eduardo',
-      content: 'Hola',
-    });
-  
-    const handlePostRequest = async () => {
+export const usePostMessage = async () => {
       try {
         const response = await fetch('http://localhost:4000/messages', {
           method: 'POST',
@@ -26,4 +18,3 @@ const PostExample = () => {
         console.error('Error:', error);
       }
     };
-}

@@ -8,11 +8,12 @@ import sendOption from "/svg/send.svg";
 
 const ENDPOINT = 'http://localhost:40001';
 
-const yourToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9ncmFtbWVyIjpbeyJpZCI6MywibmFtZSI6Ikplc3VzIiwiZW1haWwiOiJwcm9ncmFtYWRvcjNAZ21haWwuY29tIiwicGFzc3dvcmQiOiIxMTExIiwiZ2l0X2xpbmsiOm51bGwsImluc3RhZ3JhbV9saW5rIjpudWxsLCJsaW5rZWRpbl9saW5rIjpudWxsLCJwaG9uZV9udW1iZXIiOiIxMjM0NTY3ODkiLCJza2lsbHMiOiJKYXZhU2NyaXB0LCBSZWFjdCwgTm9kZS5qcyJ9XSwiaWF0IjoxNzA2MjQwNjQ4LCJleHAiOjE3MDYyNDQyNDh9.N5DpRjaN0X5lMqRGyUwPebQffGAoMWv-7YbNGKdkZPc"
+const token = localStorage.getItem('token');
+console.log("Token chat grupal", token);
 
 const socket = socketIOClient(ENDPOINT, {
   extraHeaders: {
-    Authorization: `Bearer ${yourToken}`, // Reemplaza 'yourToken' con el token que deseas enviar
+    Authorization: `Bearer ${token}`, // Reemplaza 'yourToken' con el token que deseas enviar
   },
 });
 

@@ -4,12 +4,22 @@ import { useState } from 'react';
 import { Topbar } from './Topbar';
 import { InputChatGlobal } from './InputChatGlobal';
 import sendOption from "/svg/send.svg";
-const socket = io('http://localhost:40001/');
+
 
 export const ChatGlobal = () => {
 
   const [ message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
+
+  const token = localStorage.getItem('token')
+
+  console.log("Token cliente", token);
+
+  const socket = io('http://localhost:40001/', {
+    extraHeaders: {
+      Authorization: `Bearer ${token}`, // Reemplaza 'yourToken' con el token que deseas enviar
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault()
